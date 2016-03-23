@@ -2,7 +2,7 @@
 
 <?php
 // XLM Progressing
-	$nim = "1308104010031";
+	$nim = "1301102010162";
 	$key = "ry8378ufd";
 	$xml_url = "http://ws.unsyiah.ac.id/webservice/mahasiswa/cmahasiswa/mhs/npm/$nim/key/$key";
 	$xml = simplexml_load_file($xml_url);
@@ -10,26 +10,20 @@
 ?>
 
 <?php
-  // Qrcode generator
-  include "phpqrcode/qrlib.php";
-  QRcode::png("Nama : $xml->nama, NPM : $xml->npm, Status Aktif : $xml->status_aktif, IPK : $xml->ipk ", "qrcode.png", "L", 4, 4);
+// Date formatting
+date_default_timezone_set('Asia/Jakarta');
 ?>
 
 <?php
 
-// Date formatting
-date_default_timezone_set('Asia/Jakarta');
-$tanggal = '2015-06-03';
-$day = date('D', strtotime($tanggal));
-$dayList = array(
-	'Sun' => 'Minggu',
-	'Mon' => 'Senin',
-	'Tue' => 'Selasa',
-	'Wed' => 'Rabu',
-	'Thu' => 'Kamis',
-	'Fri' => 'Jumat',
-	'Sat' => 'Sabtu'
-);
+// Qrcode generator
+  include "phpqrcode/qrlib.php";
+  $spp = number_format(floatval($xml->spp), 0,',','.');
+  if ($xml){
+    QRcode::png("$xml->npm / $xml->nama / Valid / $xml->status_aktif / Besaran UKT/SPP Rp. $spp  ", "qrcode.png", "L", 4, 4);
+  }else{
+    QRcode::png("$xml->npm / $xml->nama / TIDAK VALID", "qrcode.png", "L", 4, 4);
+  }
 
 ?>
 
@@ -63,7 +57,7 @@ hr {
   	margin-top: 10px;
     margin-bottom: 10px;
     border: 0;
-    border-top: 1px solid #eee;
+    border-top: 1px solid black;
   }	
 
 .title {
@@ -95,15 +89,16 @@ hr {
 	       		<!-- <strong>Universitas Syiah Kuala </strong><br> -->
 				Jln. Teuku Nyak Arief Darussalam 
 				<br>Banda Aceh, Aceh, 23111 <br>
-			 	<abbr title='Phone'>P:</abbr> 0651-6303969
+			 	<abbr title='Phone'>P:</abbr> 0651-6303969<br>
+        www.unsyiah.ac.id
 	    </address>
     </td>
 
     <td style='width: 50%;'>
     	<table style='margin-top: 60px; margin-left: 10px;'>
 		  <tr>
-		    <td style='text-align: right;'><b>Hari/Tanggal : </b></td>
-		    <td><?php echo $dayList[$day]; ?>, <?php echo date("d/m/Y"); ?></td> 
+		    <td style='text-align: right;'><b>Tanggal Cetak : </b></td>
+		    <td><?php echo date("d/m/Y"); ?></td> 
 		  </tr>
 		  <tr>
 		    <td style='text-align: right;'><b>Jam : </b></td>
@@ -160,7 +155,9 @@ hr {
 
 <br>
 <hr>
-<footer>UPT TIK (Teknologi Informasi dan Komunikasi) - Universitas Syiah Kuala</footer>
+<footer>UPT TIK (Teknologi Informasi dan Komunikasi) - Universitas Syiah Kuala.<br>
+www.ict.unsyiah.ac.id
+</footer>
 
 </div>
 

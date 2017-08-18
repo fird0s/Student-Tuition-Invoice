@@ -1,8 +1,6 @@
 <?php
  
-require_once("dompdf_config.inc.php"); //memanggil file dompdf_config.inc.php
-
-
+require_once("dompdf_config.inc.php"); 
 
 $dompdf = new DOMPDF();
 $dompdf->load_html_file("data.php");

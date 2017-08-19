@@ -7,7 +7,7 @@ Usually student pay their tuition fee at bank and get bank's payment invoice. If
 bank cannot print it again. The invoice was so important. 
 
 ## Solving
-I created PHP microsite that connecting [university academic's API](http://ws.unsyiah.ac.id/) and generate PDF and QRCode file. The microsite integrated with university academic student website portal so that student just click "Print Invoice". and then the output will be PDF including QRCode.
+I created PHP microsite that connecting [university academic's API](http://ws.unsyiah.ac.id/) and generate PDF and QRCode file. The microsite integrated with [university academic student website portal](http://krsonline.unsyiah.ac.id/) so that student just click "Print Invoice". and then the output will be PDF including QRCode.
 
 ## Screenshot 
 """ I am filling this section """
